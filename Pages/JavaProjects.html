@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../Assets/codingg.jpeg">
+    <link rel="stylesheet" href="../Styles/DarkMode.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <title>Portfolio | Java Projects</title>
+</head>
+<body class="d-flex flex-column min-vh-100 dark-mode">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" id="Logo" href="index.html">M</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav me-auto mb-2 mb-lg-0 ms-auto">
+              <a class="nav-link" id="homeNav" href="index.html">Home</a>
+              <a class="nav-link" id="projectsNav" href="Projects.html">Projects</a>
+              <a class="nav-link" id="JavaProjectsNav" href="JavaProjects.html">Java Projects</a>
+              <a class="nav-link" id="contactNav" href="ContactMe.html">Contact Me</a>
+            </div>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="darkModeSwitch">
+              <label class="form-check-label" for="darkModeSwitch">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M361.5 1.2c5 2.1 8.6 6.6 9.6 11.9L391 121l107.9 19.8c5.3 1 9.8 4.6 11.9 9.6s1.5 10.7-1.6 15.2L446.9 256l62.3 90.3c3.1 4.5 3.7 10.2 1.6 15.2s-6.6 8.6-11.9 9.6L391 391 371.1 498.9c-1 5.3-4.6 9.8-9.6 11.9s-10.7 1.5-15.2-1.6L256 446.9l-90.3 62.3c-4.5 3.1-10.2 3.7-15.2 1.6s-8.6-6.6-9.6-11.9L121 391 13.1 371.1c-5.3-1-9.8-4.6-11.9-9.6s-1.5-10.7 1.6-15.2L65.1 256 2.8 165.7c-3.1-4.5-3.7-10.2-1.6-15.2s6.6-8.6 11.9-9.6L121 121 140.9 13.1c1-5.3 4.6-9.8 9.6-11.9s10.7-1.5 15.2 1.6L256 65.1 346.3 2.8c4.5-3.1 10.2-3.7 15.2-1.6zM160 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z"/></svg>
+              </label>
+          </div>
+          </div>
+        </div>
+    </nav> 
+    <div class="card m-3 w-75 mx-auto blockquote shadow">
+        <div class="card-header">Tic-Tac-Toe Game</div>
+        <div class="card-body">
+            <p class="card-text">This is a Tic-Tac-Toe Game in Java which uses a GUI-Interface:</p>
+            <button class="btn btn-dark button-btn m-3 shadow" data-bs-toggle="collapse" data-bs-target="#codeBlock1" aria-expanded="false" aria-controls="codeBlock1">Show Code</button>
+            <a href="https://github.com/M-2006/TicTacToeGame" class="btn btn-primary" target="_blank">See Repository!</a>
+            <div class="collapse" id="codeBlock1">
+                <div class="card card-body">
+                    <pre><code>
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+
+public class Main extends JFrame implements ActionListener {
+    private JButton[][] buttons;
+    private char currentPlayer;
+    private JLabel statusLabel;
+    private JButton resetButton;
+
+    public Main() {
+        setTitle("Tic-Tac-Toe Game");
+        setSize(400, 400); // Adjusted size to fit the entire game
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new BorderLayout());
+        setLocationRelativeTo(null); // Center the window
+        setResizable(false);
+
+        // Load the image for the icon/logo
+        Image icon = null;
+        try {
+            icon = ImageIO.read(getClass().getResource("./Assets/codingg.jpeg")); // Change "./Assets/codingg.jpeg" to your image file name
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (icon != null) {
+            setIconImage(icon); // Set the image as the icon/logo
+        }
+
+        JPanel boardPanel = new JPanel(new GridLayout(3, 3));
+        buttons = new JButton[3][3];
+        currentPlayer = 'X';
+
+        int buttonSize = Math.min(100, Math.min(getWidth(), getHeight()) / 3); // Size of buttons
+        Font buttonFont = new Font("Arial", Font.PLAIN, buttonSize / 3);
+
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                buttons[i][j] = new JButton("");
+                buttons[i][j].setFont(buttonFont);
+                buttons[i][j].addActionListener(this);
+                buttons[i][j].setPreferredSize(new Dimension(buttonSize, buttonSize)); // Set preferred size
+                boardPanel.add(buttons[i][j]);
+            }
+        }
+
+        add(boardPanel, BorderLayout.CENTER);
+
+        statusLabel = new JLabel("Player " + currentPlayer + "'s turn", SwingConstants.CENTER);
+        statusLabel.setFont(new Font("Arial", Font.PLAIN, 20));
+        add(statusLabel, BorderLayout.SOUTH);
+
+        setVisible(true);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        JButton button = (JButton) e.getSource();
+        if (button.getText().equals("")) {
+            button.setText(String.valueOf(currentPlayer));
+            if (checkWin()) {
+                updateButtonColors(Color.GREEN);
+                int choice = JOptionPane.showConfirmDialog(this, "Player " + currentPlayer + " wins! Play again?", "Game Over", JOptionPane.YES_NO_OPTION);
+                if (choice == JOptionPane.YES_OPTION) {
+                    resetGame();
+                } else {
+                    System.exit(0);
+                }
+            } else if (isBoardFull()) {
+                updateButtonColors(Color.ORANGE);
+                int choice = JOptionPane.showConfirmDialog(this, "It's a draw! Play again?", "Game Over", JOptionPane.YES_NO_OPTION);
+                if (choice == JOptionPane.YES_OPTION) {
+                    resetGame();
+                } else {
+                    System.exit(0);
+                }
+            } else {
+                currentPlayer = (currentPlayer == 'X') ? 'O' : 'X';
+                statusLabel.setText("Player " + currentPlayer + "'s turn");
+            }
+        }
+    }
+
+    private void updateButtonColors(Color color) {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                buttons[i][j].setBackground(color);
+            }
+        }
+    }
+
+    private boolean checkWin() {
+        for (int i = 0; i < 3; i++) {
+            if (buttons[i][0].getText().equals(String.valueOf(currentPlayer)) &&
+                    buttons[i][1].getText().equals(String.valueOf(currentPlayer)) &&
+                    buttons[i][2].getText().equals(String.valueOf(currentPlayer))) {
+                return true; // Check horizontal win
+            }
+            if (buttons[0][i].getText().equals(String.valueOf(currentPlayer)) &&
+                    buttons[1][i].getText().equals(String.valueOf(currentPlayer)) &&
+                    buttons[2][i].getText().equals(String.valueOf(currentPlayer))) {
+                return true; // Check vertical win
+            }
+        }
+        if (buttons[0][0].getText().equals(String.valueOf(currentPlayer)) &&
+                buttons[1][1].getText().equals(String.valueOf(currentPlayer)) &&
+                buttons[2][2].getText().equals(String.valueOf(currentPlayer))) {
+            return true; // Check diagonal win (top-left to bottom-right)
+        }
+        if (buttons[0][2].getText().equals(String.valueOf(currentPlayer)) &&
+                buttons[1][1].getText().equals(String.valueOf(currentPlayer)) &&
+                buttons[2][0].getText().equals(String.valueOf(currentPlayer))) {
+            return true; // Check diagonal win (top-right to bottom-left)
+        }
+        return false;
+    }
+
+    private boolean isBoardFull() {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (buttons[i][j].getText().equals("")) {
+                    return false; // Board is not full
+                }
+            }
+        }
+        return true; // Board is full
+    }
+
+    private void resetGame() {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                buttons[i][j].setText("");
+                buttons[i][j].setBackground(null); // Reset button colors
+            }
+        }
+        currentPlayer = 'X';
+        statusLabel.setText("Player " + currentPlayer + "'s turn");
+    }
+
+    public static void main(String[] args) {
+        new Main();
+    }
+}
+                    </code></pre>
+                </div>
+            </div>
+        </div>
+    </div>   
+    <div class="card m-3 w-75 mx-auto blockquote shadow">
+        <div class="card-header">Calculator</div>
+        <div class="card-body">
+            <p class="card-text">This is a simple Java Calculator in Java that uses a GUI, and you can perform Arithmetic Calculations.</p>
+            <button class="btn btn-dark button-btn m-3 shadow" data-bs-toggle="collapse" data-bs-target="#codeBlock2" aria-expanded="false" aria-controls="codeBlock2">Show Code</button>
+            <a class="btn btn-primary" href="https://github.com/M-2006/Calculator-Java" target="_blank">See Repository!</a>
+            <div class="collapse" id="codeBlock2">
+                <div class="card card-body">
+                    <pre><code>
+                        
+//Import the swing, awt & awt-event classes as ' * ' (* = everything from that class)
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class Calculator implements ActionListener{ //add / implement Actionlistener, to events
+
+    //Declare the frames, text-fields, buttons, functions for the butons, and the panej (JPanel), and the values: double / char
+    JFrame frame;
+    JTextField textfield;
+    JButton[] numberButtons = new JButton [10];
+    JButton[] functionButton = new JButton[9];
+    JButton addButton, subButton, mulButton, divButton;
+    JButton decButton, equButton, delButton, clrButton, negButton;
+    JPanel panel;
+
+    Font myFont = new Font ("Ink Free", Font.BOLD,30);
+
+    double num1 = 0, num2 = 0, result = 0;
+    char operator;
+
+
+    Calculator(){ // Create a Constructor: and then make the frames, textfields, button,...
+
+        frame = new JFrame("Calculator");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(420, 550);
+        frame.setLayout(null);
+
+        textfield = new JTextField();
+        textfield.setBounds(50, 25, 300, 50);
+        textfield.setFont(myFont);
+        textfield.setEditable(false);
+
+        addButton = new JButton("+");
+        subButton = new JButton("-");
+        mulButton = new JButton("*");
+        divButton = new JButton("/");
+        decButton = new JButton(".");
+        equButton = new JButton("=");
+        delButton = new JButton("Del");
+        clrButton = new JButton("Clr");
+        negButton = new JButton("(-)");
+
+        functionButton[0] = addButton; // +
+        functionButton[1] = subButton; // -
+        functionButton[2] = mulButton; // *
+        functionButton[3] = divButton; // /
+        functionButton[4] = decButton; // . (decimal)
+        functionButton[5] = equButton; // =
+        functionButton[6] = delButton; // Del (Delete a value (number))
+        functionButton[7] = clrButton; // Clr (Clear (clear the numbers in the given field by the user))
+        functionButton[8] = negButton; // - (Negative button, ex. ( -5))
+
+        for(int i = 0; i < 9; i++) { //add a for-loop to add a ActionLister & Font
+            functionButton[i].addActionListener(this);
+            functionButton[i].setFont(myFont);
+            functionButton[i].setFocusable(false);
+        }
+        for(int i = 0; i < 10; i++) {
+            numberButtons[i] = new JButton(String.valueOf(i));
+            numberButtons[i].addActionListener(this);
+            numberButtons[i].setFont(myFont);
+            numberButtons[i].setFocusable(false);
+        }
+        //set the bounds for: NegButton, delButton, clrButton:
+        negButton.setBounds(50,430,100,50);
+        delButton.setBounds(150,430,100,50);
+        clrButton.setBounds(250,430,100,50);
+
+        panel = new JPanel(); //set the JPanel
+        panel.setBounds(50, 100, 300, 300);
+        panel.setLayout(new GridLayout(4,4,10,10));
+        //	panel.setBackground(Color.GRAY);
+
+        panel.add(numberButtons[1]);
+        panel.add(numberButtons[2]);
+        panel.add(numberButtons[3]);
+        panel.add(addButton);
+
+        panel.add(numberButtons[4]);
+        panel.add(numberButtons[5]);
+        panel.add(numberButtons[6]);
+        panel.add(subButton);
+
+        panel.add(numberButtons[7]);
+        panel.add(numberButtons[8]);
+        panel.add(numberButtons[9]);
+        panel.add(mulButton);
+
+        panel.add(decButton);
+        panel.add(numberButtons[0]);
+
+        panel.add(equButton);
+        panel.add(divButton);
+
+        frame.add(panel);
+        frame.add(negButton);
+        frame.add(delButton);
+        frame.add(clrButton);
+        frame.add(textfield);
+        frame.setVisible(true); //Make the Panel visible (true = you can see it / false = you cant see it)
+
+    }
+
+    public static void main(String[] args) {
+        // TODO Auto-generated method stub
+        Calculator calc = new Calculator(); //Call the constructor to be able to run-it
+
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) { // Add the event to take the user-input from the buttons:
+        // TODO Auto-generated method stub
+        for(int i = 0; i < 10; i++) {
+            if(e.getSource() == numberButtons[i]) {
+                textfield.setText(textfield.getText().concat(String.valueOf(i)));
+            }
+        }
+        if(e.getSource() == decButton){
+            textfield.setText(textfield.getText().concat("."));
+        }
+        if(e.getSource() == addButton){
+            num1  = Double.parseDouble(textfield.getText());
+            operator = '+';
+            textfield.setText("");
+        }
+        if(e.getSource() == subButton){
+            num1  = Double.parseDouble(textfield.getText());
+            operator = '-';
+            textfield.setText("");
+        }
+        if(e.getSource() == mulButton){
+            num1  = Double.parseDouble(textfield.getText());
+            operator = '*';
+            textfield.setText("");
+        }
+        if(e.getSource() == divButton){
+            num1  = Double.parseDouble(textfield.getText());
+            operator = '/';
+            textfield.setText("");
+        }
+        if(e.getSource() == equButton) { // When clicked on (' = ') what actions are to be performed:
+            num2 = Double.parseDouble(textfield.getText());
+            switch(operator) {
+                case '+':
+                    result = num1 + num2;
+                    break;
+
+                case '-':
+                    result = num1 - num2;
+                    break;
+
+                case'*':
+                    result = num1 * num2;
+                    break;
+
+                case'/':
+                    result = num1 / num2;
+                    break;
+            }
+            textfield.setText(String.valueOf(result));
+            num1 = result;
+        }
+
+        if(e.getSource() == clrButton){
+            textfield.setText(""); // Clear everything:
+        }
+        if(e.getSource() == delButton){
+            String string = textfield.getText();
+            textfield.setText(""); // Delete function
+
+            for(int i = 0; i < string.length(); i++) {
+                textfield.setText(textfield.getText() + string.charAt(i)); //Get String (Text)
+            }
+        }
+        if(e.getSource() == negButton){
+            double temp = Double.parseDouble(textfield.getText());
+            temp *= -1; // Negative button funciton
+            textfield.setText(String.valueOf(temp));
+        }
+    }
+
+}
+                    </code></pre>
+                </div>
+            </div>
+        </div>
+    </div> 
+    <footer class="footer mt-auto">
+        <div class="container-fluid">
+            <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+                <li class="nav-item"><a href="index.html" class="nav-link px-2 text-dark" id="homeLinkFoot">Home</a></li>
+                <li class="nav-item"><a href="Projects.html" class="nav-link px-2 text-dark" id="projectsLinkFoot">Projects</a></li>
+                <li class="nav-item"><a href="JavaProjects.html" class="nav-link px-2 text-dark" id="javaProjectsLinkFoot">Java Projects</a></li>
+                <li class="nav-item"><a href="ContactMe.html" class="nav-link px-2 text-dark" id="contactLinkFoot">Contact Me</a></li>
+            </ul>
+            <p class="text-center text-dark" id="copyRight">© 2024 Company, Inc</p>
+            <button class="btn btn-dark" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;" onclick="scrollToTop()" id="upBtn">
+                <i class="bi bi-arrow-up"></i>
+            </button>
+            <script>
+                const scrollToTop = () =>{
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    })
+                }
+            </script>
+        </div>
+    </footer>
+    <script src="../Scripts/Script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
