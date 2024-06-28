@@ -1,75 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../Assets/codingg.jpeg">
-    <link rel="stylesheet" href="../Styles/DarkMode.css">
-    <link rel="stylesheet" href="../Styles/ContactStyles.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <title>Portfolio | Contact Me</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
-<body class="d-flex flex-column min-vh-100 dark-mode">
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-      <a class="navbar-brand" id="Logo" href="index.html">M</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav me-auto mb-2 mb-lg-0 ms-auto">
-          <a class="nav-link" id="homeNav" href="index.html">Home</a>
-          <a class="nav-link" id="projectsNav" href="Projects.html">Projects</a>
-          <a class="nav-link" id="JavaProjectsNav" href="JavaProjects.html">Java Projects</a>
-          <a class="nav-link" id="contactNav" href="ContactMe.html">Contact Me</a>
+
+<body class="bg-gray-900 text-gray-300">
+
+    <!-- Navbar -->
+    <nav class="bg-gray-800 shadow">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <a class="text-2xl font-bold text-white" id="Logo" href="index.html">M</a>
+                <button class="navbar-toggler text-white lg:hidden focus:outline-none" id="navbar-toggler">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+                <div class="hidden lg:flex space-x-4" id="navbar">
+                    <a class="text-gray-300 hover:text-white" id="homeNav" href="index.html">Home</a>
+                    <a class="text-gray-300 hover:text-white" id="projectsNav" href="Projects.html">Projects</a>
+                    <a class="text-gray-300 hover:text-white" id="JavaProjectsNav" href="JavaProjects.html">Java
+                        Projects</a>
+                    <a class="text-gray-300 hover:text-white" id="contactNav" href="ContactMe.html">Contact Me</a>
+                </div>
+            </div>
+            <div class="hidden lg:hidden" id="navbar-collapse">
+                <a class="block text-gray-300 hover:text-white py-2" id="homeNavCollapse" href="index.html">Home</a>
+                <a class="block text-gray-300 hover:text-white py-2" id="projectsNavCollapse"
+                    href="Projects.html">Projects</a>
+                <a class="block text-gray-300 hover:text-white py-2" id="JavaProjectsNavCollapse"
+                    href="JavaProjects.html">Java Projects</a>
+                <a class="block text-gray-300 hover:text-white py-2" id="contactNavCollapse"
+                    href="ContactMe.html">Contact Me</a>
+            </div>
         </div>
-        <div class="form-check form-switch">
-          <input class="form-check-input" type="checkbox" id="darkModeSwitch">
-          <label class="form-check-label" for="darkModeSwitch">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M361.5 1.2c5 2.1 8.6 6.6 9.6 11.9L391 121l107.9 19.8c5.3 1 9.8 4.6 11.9 9.6s1.5 10.7-1.6 15.2L446.9 256l62.3 90.3c3.1 4.5 3.7 10.2 1.6 15.2s-6.6 8.6-11.9 9.6L391 391 371.1 498.9c-1 5.3-4.6 9.8-9.6 11.9s-10.7 1.5-15.2-1.6L256 446.9l-90.3 62.3c-4.5 3.1-10.2 3.7-15.2 1.6s-8.6-6.6-9.6-11.9L121 391 13.1 371.1c-5.3-1-9.8-4.6-11.9-9.6s-1.5-10.7 1.6-15.2L65.1 256 2.8 165.7c-3.1-4.5-3.7-10.2-1.6-15.2s6.6-8.6 11.9-9.6L121 121 140.9 13.1c1-5.3 4.6-9.8 9.6-11.9s10.7-1.5 15.2 1.6L256 65.1 346.3 2.8c4.5-3.1 10.2-3.7 15.2-1.6zM160 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z"/></svg>
-          </label>
-      </div>
-      </div>
-    </div>
-</nav>
-    <div class="card m-3 mx-auto blockquote shadow">
-        <div class="card-header">Contact Me</div>
-        <div class="card-body">
-            <p class="card-text">Feel free to contact me for any inquiries or project collaborations.</p>
-            <ul class="list-group">
-                <li class="list-group-item"><i class="bi bi-envelope-fill me-2"></i><a class="info-section" href="mailto:muhametmaliqi@icloud.com" >muhametmaliqi@icloud.com</a></li>
-                <li class="list-group-item"><i class="bi bi-telephone-fill me-2"></i><a class="info-section" href="tel:+38348260269">+ 383 (0) - 48 - 260 - 269</a></li>
-                <li class="list-group-item"><i class="bi bi-github"></i> GitHub: <a class="info-section" href="https://github.com/M-2006" target="_blank">M-2006</a></li>
-                <li class="list-group-item"><i class="bi bi-linkedin"></i> LinkedIn: <a class="info-section" href="https://www.linkedin.com/in/muhamet-maliqi-77825a299/?locale=en_US" target="_blank">muhamet-maliqi</a></li>
+    </nav>
+
+    <!-- Contact Card -->
+    <div class="container mx-auto px-4 mt-8 mb-28">
+        <div class="bg-gray-800 text-white rounded-lg shadow-lg p-6">
+            <h2 class="text-2xl font-semibold mb-4">Contact Me</h2>
+            <ul class="space-y-4">
+                <li class="flex items-center m-2 p-2">
+                    <i class="bi bi-envelope-check-fill m-2"></i>
+                    <a href="mailto:muhametmaliqi@icloud.com" class="text-white">muhametmaliqi@icloud.com</a>
+                </li>
+                <hr>
+                <li class="flex items-center m-2 p-2">
+                    <i class="bi bi-telephone-inbound m-2"></i>
+                    <a href="tel:+38348260269" class="text-white">+ 383 (0) - 48 - 260 - 269</a>
+                </li>
+                <hr>
+                <li class="flex items-center m-2 p-2">
+                    <i class="bi bi-github m-2"></i>
+                     GitHub: <a href="https://github.com/M-2006" class="text-white" target="_blank">M-2006</a>
+                </li>
+                <hr>
+                <li class="flex items-center m-2 p-2">
+                    <i class="bi bi-linkedin m-2"></i>
+                    LinkedIn: <a href="https://www.linkedin.com/in/muhamet-maliqi-77825a299/?locale=en_US"
+                        class="text-white" target="_blank">muhamet-maliqi</a>
+                </li>
+                <hr>
             </ul>
         </div>
-    </div>   
-    <footer class="footer mt-auto">
-      <div class="container-fluid">
-          <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-              <li class="nav-item"><a href="index.html" class="nav-link px-2 text-dark" id="homeLinkFoot">Home</a></li>
-              <li class="nav-item"><a href="Projects.html" class="nav-link px-2 text-dark" id="projectsLinkFoot">Projects</a></li>
-              <li class="nav-item"><a href="JavaProjects.html" class="nav-link px-2 text-dark" id="javaProjectsLinkFoot">Java Projects</a></li>
-              <li class="nav-item"><a href="ContactMe.html" class="nav-link px-2 text-dark" id="contactLinkFoot">Contact Me</a></li>
-          </ul>
-          <p class="text-center text-dark" id="copyRight">© 2024 Muhamet Maliqi | Portfolio</p>
-          <button class="btn btn-dark" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;" onclick="scrollToTop()" id="upBtn">
-              <i class="bi bi-arrow-up"></i>
-          </button>
-          <script>
-              const scrollToTop = () =>{
-                  window.scrollTo({
-                      top: 0,
-                      behavior: 'smooth'
-                  })
-              }
-          </script>
-      </div>
-  </footer>
-  <script src="../Scripts/Script.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-auto bg-gray-800 py-4">
+        <div class="container mx-auto px-4">
+            <ul class="flex justify-center space-x-4">
+                <li><a href="index.html" class="text-gray-300 hover:text-white" id="homeLinkFoot">Home</a></li>
+                <li><a href="Projects.html" class="text-gray-300 hover:text-white" id="projectsLinkFoot">Projects</a>
+                </li>
+                <li><a href="JavaProjects.html" class="text-gray-300 hover:text-white"
+                        id="javaProjectsLinkFoot">Java Projects</a></li>
+                <li><a href="ContactMe.html" class="text-gray-300 hover:text-white" id="contactLinkFoot">Contact
+                        Me</a></li>
+            </ul>
+            <p class="text-center text-gray-300 mt-4" id="copyRight">© 2024 Muhamet Maliqi</p>
+        </div>
+        <button class="fixed bottom-4 right-4 bg-gray-700 text-white p-2 rounded-full shadow hover:bg-gray-600"
+            onclick="scrollToTop()" id="upBtn">
+            <svg class="w-6 h-6 transform rotate-180" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd"
+                    d="M5.293 9.293a1 1 0 011.414 0L10 12.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clip-rule="evenodd" />
+            </svg>
+        </button>
+    </footer>
+
+    <script>
+        // Function to scroll to top
+        const scrollToTop = () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        };
+
+        // Navbar toggler for mobile view
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('navbar-toggler').addEventListener('click', () => {
+                document.getElementById('navbar-collapse').classList.toggle('hidden');
+            });
+        });
+    </script>
+
 </body>
+
 </html>
